@@ -39,6 +39,8 @@ void metal_irq_disable(unsigned int vector)
 	irq_disable(vector);
 }
 
+#ifdef HAS_METAL_IRQ_HANDLER
+
 /** IRQ handlers descriptor structure */
 struct metal_irq_hddesc {
 	metal_irq_handler hd;     /**< irq handler */
@@ -278,3 +280,4 @@ void metal_irq_isr(unsigned int vector)
 		}
 	}
 }
+#endif /* HAS_METAL_IRQ_HANDLER */
