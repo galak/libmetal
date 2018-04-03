@@ -12,7 +12,6 @@
 #include <metal/device.h>
 #include <metal/sys.h>
 #include <metal/utilities.h>
-#include <metal/irq.h>
 
 struct metal_state _metal;
 
