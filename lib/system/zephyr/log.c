@@ -31,7 +31,7 @@ void metal_zephyr_log_handler(enum metal_log_level level,
 
 	if (level <= METAL_LOG_EMERGENCY || level > METAL_LOG_DEBUG)
 		level = METAL_LOG_EMERGENCY;
-	printk("%s", level_strs[level]);
+	printk("%s\n", level_strs[level-1]);
 
 	va_start(args, format);
 	vprintk(format, args);

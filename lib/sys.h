@@ -44,27 +44,10 @@ typedef int metal_irq_t;
 #define METAL_BAD_IRQ		((metal_irq_t)-1)
 
 /**
- * Initialization configuration for libmetal.
- */
-struct metal_init_params {
-
-	/** log message handler (defaults to stderr). */
-	metal_log_handler		log_handler;
-
-	/** default log message level (defaults to emergency). */
-	enum metal_log_level		log_level;
-};
-
-/**
  * System independent runtime state for libmetal.  This is part of a system
  * specific singleton data structure (@see _metal).
  */
 struct metal_common_state {
-	/** Current log level. */
-	enum metal_log_level		log_level;
-
-	/** Current log handler (null for none). */
-	metal_log_handler		log_handler;
 
 	/** List of registered buses. */
 	struct metal_list		bus_list;
@@ -80,14 +63,6 @@ struct metal_state;
 
 #include <metal/system/@PROJECT_SYSTEM@/sys.h>
 
-#ifndef METAL_INIT_DEFAULTS
-#define METAL_INIT_DEFAULTS				\
-{							\
-	.log_handler	= metal_default_log_handler,	\
-	.log_level	= METAL_LOG_INFO,		\
-}
-#endif
-
 /** System specific runtime data. */
 extern struct metal_state _metal;
 
@@ -96,13 +71,11 @@ extern struct metal_state _metal;
  *
  * Initialize the libmetal library.
  *
- * @param[in]	params	Initialization params (@see metal_init_params).
- *
  * @return	0 on success, or -errno on failure.
  *
  * @see metal_finish
  */
-extern int metal_init(const struct metal_init_params *params);
+extern int metal_init(void);
 
 /**
  * @brief	Shutdown libmetal.
@@ -122,10 +95,9 @@ extern void metal_finish(void);
  * involves obtaining necessary pieces of system information (sysfs mount path,
  * page size, etc.).
  *
- * @param[in]	params	Initialization parameters (@see metal_init_params).
  * @return	0 on success, or -errno on failure.
  */
-extern int metal_sys_init(const struct metal_init_params *params);
+extern int metal_sys_init(void);
 
 /**
  * @brief	libmetal system shutdown.

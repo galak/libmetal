@@ -57,7 +57,7 @@ include_directories (${_inc_dirs})
 add_definitions (-DMETAL_INTERNAL)
 
 if (WITH_DEFAULT_LOGGER)
-  add_definitions (-DDEFAULT_LOGGER_ON)
+  add_definitions (-DMETAL_LOG_LEVEL=7)
 endif (WITH_DEFAULT_LOGGER)
 
 if (WITH_ZEPHYR)

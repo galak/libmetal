@@ -105,7 +105,7 @@ static int metal_init_page_sizes(void)
 	return 0;
 }
 
-int metal_sys_init(const struct metal_init_params *params)
+int metal_sys_init(void)
 {
 	static char sysfs_path[SYSFS_PATH_MAX];
 	const char *tmp_path;
@@ -155,8 +155,6 @@ int metal_sys_init(const struct metal_init_params *params)
 			  strerror(errno));
 	}
 	_metal.pagemap_fd = result;
-
-	metal_unused(params);
 
 	/* Initialize IRQ handling */
 	metal_linux_irq_init();
