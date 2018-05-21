@@ -23,6 +23,8 @@ extern "C" {
 void metal_zephyr_log_handler(enum metal_log_level level,
 			      const char *format, ...);
 
+#define metal_log_handler metal_zephyr_log_handler
+
 #ifdef __cplusplus
 }
 #endif
