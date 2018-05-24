@@ -55,10 +55,7 @@ endforeach (f)
 
 include_directories (${_inc_dirs})
 add_definitions (-DMETAL_INTERNAL)
-
-if (WITH_DEFAULT_LOGGER)
-  add_definitions (-DMETAL_LOG_LEVEL=7)
-endif (WITH_DEFAULT_LOGGER)
+add_definitions (-DMETAL_LOG_LEVEL=8)
 
 if (WITH_ZEPHYR)
   zephyr_library_named(metal)

@@ -14,7 +14,7 @@
 
 #if (METAL_LOG_LEVEL > 0)
 
-void metal_default_log_handler(enum metal_log_level level,
+void metal_weak metal_default_log_handler(enum metal_log_level level,
 			       const char *format, ...)
 {
 	char msg[1024];
@@ -29,6 +29,8 @@ void metal_default_log_handler(enum metal_log_level level,
 		"metal: info:      ",
 		"metal: debug:     ",
 	};
+
+	printk("%s: weak function\n",__func__);
 
 	va_start(args, format);
 	vsnprintf(msg, sizeof(msg), format, args);

@@ -24,11 +24,12 @@ static const char *level_strs[] = {
 	"metal: debug:     ",
 };
 
-void metal_zephyr_log_handler(enum metal_log_level level,
+void metal_default_log_handler(enum metal_log_level level,
 			      const char *format, ...)
 {
 	va_list args;
 
+	printk("%s: strong function\n",__func__);
 	if (level <= METAL_LOG_EMERGENCY || level > METAL_LOG_DEBUG)
 		level = METAL_LOG_EMERGENCY;
 	printk("%s\n", level_strs[level-1]);
