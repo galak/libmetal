@@ -38,10 +38,7 @@ static int irq(void)
 {
 	int rc = 0, flags_1, flags_2;
 	char *err_msg="";
-	enum metal_log_level mll= metal_get_log_level();
 
-	/* Do not show LOG_ERROR or LOG_DEBUG for expected fail case */
-	metal_set_log_level(METAL_LOG_CRITICAL);
 
 	rc = metal_irq_register(1, irq_handler, 0, (void *)1);
 	if (rc) {
@@ -214,7 +211,6 @@ static int irq(void)
 	rc = 0;
 
 out:
-	metal_set_log_level(mll);
 	if ((err_msg[0] != '\0') && (!rc))
 		rc = -EINVAL;
 	if (rc) metal_log(METAL_LOG_ERROR, "%s", err_msg);
