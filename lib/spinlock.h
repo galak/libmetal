@@ -22,7 +22,7 @@ extern "C" {
 /** \defgroup spinlock Spinlock Interfaces
  *  @{ */
 struct metal_spinlock {
-	atomic_int v;
+	atomic_flag v;
 };
 
 /** Static metal spinlock initialization. */
@@ -34,7 +34,7 @@ struct metal_spinlock {
  */
 static inline void metal_spinlock_init(struct metal_spinlock *slock)
 {
-	atomic_store(&slock->v, 0);
+	atomic_flag_clear(&slock->v);
 }
 
 /**
